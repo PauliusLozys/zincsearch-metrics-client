@@ -14,6 +14,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	defer w.Close()
 
 	jsonLogger := slog.NewJSONHandler(w, nil)
 	slog.SetDefault(slog.New(jsonLogger))
@@ -25,4 +26,5 @@ func main() {
 ```
 
 ### Options
-Custom HTTP client can be passed using `WithHttpClient`
+Custom HTTP client can be passed using `WithHttpClient` \
+Custom metrics flush interval to `ZincSearch` service can be passed using `WithFlushDuration` (default: time.Second)
